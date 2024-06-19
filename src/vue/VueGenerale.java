@@ -20,12 +20,13 @@ public class VueGenerale extends JFrame implements ActionListener {
 
 	// instanciation des panels
 	private PanelProfil unPanelProfil;
-	private PanelTexte unPanelTexte = new PanelTexte();
+	private PanelTexte unPanelTexte;
 
 	public VueGenerale(User unUser) {
 
 		// envoie de unUser au profil
 		this.unPanelProfil = new PanelProfil(unUser);
+		this.unPanelTexte = new PanelTexte(unUser);
 
 		this.setTitle("Bibliothèque");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

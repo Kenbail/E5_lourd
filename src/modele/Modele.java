@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import controleur.Documentation;
 import controleur.User;
 
 public class Modele {
@@ -62,6 +63,23 @@ public class Modele {
 		String requete = "call  " + nomP + "(" + chaine + ") ; ";
 		System.out.println(requete);
 
+		try {
+			uneBdd.seConnecter();
+			Statement unStat = uneBdd.getMaConnexion().createStatement();
+			unStat.execute(requete);
+			unStat.close();
+			uneBdd.seDeconnecter();
+		} catch (SQLException exp) {
+			System.out.println("Erreur execution requete :" + requete);
+			exp.printStackTrace();
+		}
+	}
+
+	public static void EnregistrerDoc(Documentation unDocumentation) {
+		String requete = "Insert into documentation (description,texte,createur) VALUES ('"
+				+ unDocumentation.getTexte()
+				+ "','" + unDocumentation.getDescription()
+				+ "','" + unDocumentation.getCreateur() + "')";
 		try {
 			uneBdd.seConnecter();
 			Statement unStat = uneBdd.getMaConnexion().createStatement();

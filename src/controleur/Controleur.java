@@ -14,4 +14,8 @@ public class Controleur {
 	public static void appelProcedure(String nomP, String tab[]) {
 		Modele.appelProcedure(nomP, tab);
 	}
+
+	public static void EnregistrerDoc(Documentation unDocumentation) {
+		Modele.EnregistrerDoc(unDocumentation);
+	}
 }
