@@ -15,10 +15,12 @@ import controleur.User;
 public class VueGenerale extends JFrame implements ActionListener {
 	private JButton btProfil = new JButton("Profil");
 	private JButton btQuitter = new JButton("Quitter");
+	private JButton btTexte = new JButton("Ecrire une nouvelle documentation");
 	private JPanel panelMenu = new JPanel();
 
 	// instanciation des panels
 	private PanelProfil unPanelProfil;
+	private PanelTexte unPanelTexte = new PanelTexte();
 
 	public VueGenerale(User unUser) {
 
@@ -37,14 +39,19 @@ public class VueGenerale extends JFrame implements ActionListener {
 		this.panelMenu.setBackground(Color.gray);
 		this.panelMenu.setLayout(new GridLayout(1, 6));
 		this.panelMenu.add(this.btProfil);
+		this.panelMenu.add(this.btTexte);
+
 		this.panelMenu.add(this.btQuitter);
+
 		this.add(this.panelMenu);
 
 		// insertion des Panels dans la fenetre
 		this.add(this.unPanelProfil);
+		this.add(this.unPanelTexte);
 
 		// rendre les boutons ecoutables
 		this.btProfil.addActionListener(this);
+		this.btTexte.addActionListener(this);
 		this.btQuitter.addActionListener(this);
 
 		this.setVisible(true);
@@ -56,6 +63,9 @@ public class VueGenerale extends JFrame implements ActionListener {
 			case 1:
 				this.unPanelProfil.setVisible(true);
 				break;
+			case 2:
+				this.unPanelTexte.setVisible(true);
+				break;
 		}
 	}
 
@@ -63,6 +73,8 @@ public class VueGenerale extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == this.btProfil) {
 			this.afficherPanel(1);
+		} else if (e.getSource() == this.btTexte) {
+			this.afficherPanel(2);
 		} else if (e.getSource() == this.btQuitter) {
 			ProjetEvent.rendreVisibleVueGenerale(false, null);
 			ProjetEvent.rendreVisibleVueConnexion(true);

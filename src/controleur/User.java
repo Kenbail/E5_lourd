@@ -1,22 +1,12 @@
 package controleur;
 
 public class User {
-	private int iduser ; 
+	private int iduser;
 	private String nom, prenom, email, mdp, role;
-	
+
 	public User(int iduser, String nom, String prenom, String email, String mdp, String role) {
 		super();
 		this.iduser = iduser;
-		this.nom = nom;
-		this.prenom = prenom;
-		this.email = email;
-		this.mdp = mdp;
-		this.role = role;
-	} 
-	
-	public User( String nom, String prenom, String email, String mdp, String role) {
-		super();
-		this.iduser = 0;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.email = email;
@@ -71,7 +61,5 @@ public class User {
 	public void setRole(String role) {
 		this.role = role;
 	}
-	
-	
+
 }
- 
