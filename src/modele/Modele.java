@@ -4,6 +4,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import controleur.Documentation;
 import controleur.User;
@@ -90,5 +91,33 @@ public class Modele {
 			System.out.println("Erreur execution requete :" + requete);
 			exp.printStackTrace();
 		}
+	}
+
+	public static ArrayList<Documentation> RecupDoc() {
+		ArrayList<Documentation> lesDocumentations = new ArrayList<Documentation>();
+		String requete = "select * from documentation";
+		try {
+			uneBdd.seConnecter();
+			PreparedStatement unStat = uneBdd.getMaConnexion().prepareStatement(requete);
+
+			ResultSet desRes = unStat.executeQuery();
+
+			if (desRes.next()) {
+				// extraction des données de la BDD
+				while (desRes.next()) {
+					Documentation unDocumentation = new Documentation(
+							desRes.getInt("idDoc"), desRes.getString("description"),
+							desRes.getString("texte"), desRes.getString("createur"));
+					lesDocumentations.add(unDocumentation);
+				}
+
+			}
+			unStat.close();
+			uneBdd.seDeconnecter();
+		} catch (SQLException exp) {
+			System.out.println("Erreur execution requete :" + requete);
+			exp.printStackTrace();
+		}
+		return lesDocumentations;
 	}
 }

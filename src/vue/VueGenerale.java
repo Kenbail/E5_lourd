@@ -16,11 +16,13 @@ public class VueGenerale extends JFrame implements ActionListener {
 	private JButton btProfil = new JButton("Profil");
 	private JButton btQuitter = new JButton("Quitter");
 	private JButton btTexte = new JButton("Ecrire une nouvelle documentation");
+	private JButton btVoirdoc = new JButton("Voir les documentations");
 	private JPanel panelMenu = new JPanel();
 
 	// instanciation des panels
 	private PanelProfil unPanelProfil;
 	private PanelTexte unPanelTexte;
+	private PanelVoirdoc unPanelVoirdoc = new PanelVoirdoc();
 
 	public VueGenerale(User unUser) {
 
@@ -41,7 +43,7 @@ public class VueGenerale extends JFrame implements ActionListener {
 		this.panelMenu.setLayout(new GridLayout(1, 6));
 		this.panelMenu.add(this.btProfil);
 		this.panelMenu.add(this.btTexte);
-
+		this.panelMenu.add(this.btVoirdoc);
 		this.panelMenu.add(this.btQuitter);
 
 		this.add(this.panelMenu);
@@ -49,10 +51,12 @@ public class VueGenerale extends JFrame implements ActionListener {
 		// insertion des Panels dans la fenetre
 		this.add(this.unPanelProfil);
 		this.add(this.unPanelTexte);
+		this.add(this.unPanelVoirdoc);
 
 		// rendre les boutons ecoutables
 		this.btProfil.addActionListener(this);
 		this.btTexte.addActionListener(this);
+		this.btVoirdoc.addActionListener(this);
 		this.btQuitter.addActionListener(this);
 
 		this.setVisible(true);
@@ -60,12 +64,17 @@ public class VueGenerale extends JFrame implements ActionListener {
 
 	public void afficherPanel(int choix) {
 		this.unPanelProfil.setVisible(false);
+		this.unPanelTexte.setVisible(false);
+		this.unPanelVoirdoc.setVisible(false);
 		switch (choix) {
 			case 1:
 				this.unPanelProfil.setVisible(true);
 				break;
 			case 2:
 				this.unPanelTexte.setVisible(true);
+				break;
+			case 3:
+				this.unPanelVoirdoc.setVisible(true);
 				break;
 		}
 	}
@@ -76,6 +85,8 @@ public class VueGenerale extends JFrame implements ActionListener {
 			this.afficherPanel(1);
 		} else if (e.getSource() == this.btTexte) {
 			this.afficherPanel(2);
+		} else if (e.getSource() == this.btVoirdoc) {
+			this.afficherPanel(3);
 		} else if (e.getSource() == this.btQuitter) {
 			ProjetEvent.rendreVisibleVueGenerale(false, null);
 			ProjetEvent.rendreVisibleVueConnexion(true);

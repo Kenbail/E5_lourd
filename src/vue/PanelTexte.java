@@ -46,7 +46,7 @@ public class PanelTexte extends PanelPrincipal implements ActionListener {
         JLabel labelDescription = new JLabel("Description :");
         this.panelForm.add(labelDescription);
 
-        JLabel labelediteur = new JLabel("Ecrire votre documentation:");
+        JLabel labelediteur = new JLabel("Ecrire votre Doc:");
         this.panelText.add(labelediteur);
 
         // ligneVide.setPreferredSize(new Dimension(0, 20)); // 20 pixels de hauteur

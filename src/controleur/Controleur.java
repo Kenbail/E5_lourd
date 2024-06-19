@@ -1,5 +1,7 @@
 package controleur;
 
+import java.util.ArrayList;
+
 import modele.Modele;
 
 public class Controleur {
@@ -17,5 +19,9 @@ public class Controleur {
 
 	public static void EnregistrerDoc(Documentation unDocumentation) {
 		Modele.EnregistrerDoc(unDocumentation);
+	}
+
+	public static ArrayList<Documentation> RecupDoc() {
+		return Modele.RecupDoc();
 	}
 }
